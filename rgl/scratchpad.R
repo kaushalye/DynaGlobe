@@ -14,4 +14,7 @@ data = read.csv('../GVP_Volcano_List.csv')
 data = latlong2cart(data)
 
 open3d()
+
 points3d(data$x, data$y, data$z)
+
+rgl.spheres(0,0,0,texture="../Earth.png")
