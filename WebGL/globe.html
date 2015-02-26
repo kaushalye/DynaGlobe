@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Volcanoes of Planet Earth - 3D Globe | Travel Channels</title>
+<meta name="description" content="A 3D globe showing the locations and elevations of 1406 volcanoes on planet earth rendered with WebGL.">
+<meta property="og:image" content="http://volcanoes.travel-channels.com/img/volcanoes-globe-preview.jpg">
+<style type="text/css">
+html {height: 100%;}
+body {
+margin: 0;
+padding: 0;
+color: #fff;
+font: 13px/20px sans-serif;
+height: 100%;
+}
+#info {
+font-size: 12px;
+position: absolute;
+bottom: 5px;
+background-color: rgba(0,0,0,0.8);
+border-radius: 3px;
+right: 10px;
+padding: 10px;
+}
+#title {
+position: absolute;
+top: 20px;
+width: 270px;
+left: 20px;
+background-color: rgba(0,0,0,0.2);
+border-radius: 3px;
+padding: 10px;
+}
+a {color: #aaa;text-decoration: none;}
+.bull {padding: 0 5px;color: #555;}
+#title h1 {font-size: 18px;}
+</style>
+</head>
+<body>
+
+<div id="container"></div>
+<div id="title">
+<h1>Volcanoes</h1>
+
+<script type="text/javascript" src="./vendor/detector-threejs.min.js"></script>
+<script type="text/javascript" src="./globe.js"></script>
+<script type="text/javascript">
+if(!Detector.webgl){
+    Detector.addGetWebGLMessage();
+} else {
+    var container = document.getElementById('container');
+    var globe = new DAT.Globe(container);
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', './globe_volcanoes.json', true);
+    xhr.onreadystatechange = function(e) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            globe.addData(data, {format: 'magnitude', name: 'volcanoes'});
+            globe.createPoints();
+            globe.animate();
+            document.body.style.backgroundImage = 'none';
+        }
+    };
+    xhr.send(null);
+}
+</script>
+
+</body>
+
+</html>
+
