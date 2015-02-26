@@ -1,3 +1,5 @@
+library(rgl)
+
 latlong2cart = function (coordinates) {
   R = 6371 # radius of earth in km
   coordinates$x = R * cos(coordinates$Latitude/180*pi) * cos(coordinates$Longitude/180*pi)
