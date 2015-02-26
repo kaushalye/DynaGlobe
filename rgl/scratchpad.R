@@ -8,17 +8,13 @@ interleave <- function(v1,v2)
 }
 
 latlong2cart = function (data, R=6371) {
-  x1 = R * cos(data$Latitude/180*pi) * cos(data$Longitude/180*pi)
-  y1 = R * cos(data$Latitude/180*pi) * sin(data$Longitude/180*pi)
-  z1 = R * sin(data$Latitude/180*pi)
-
-  height = data$Elevation
-
-  x2 = (R + height) * cos(data$Latitude/180*pi) * cos(data$Longitude/180*pi)
-  y2 = (R + height) * cos(data$Latitude/180*pi) * sin(data$Longitude/180*pi)
-  z2 = (R + height) * sin(data$Latitude/180*pi)
-
-  coordinates = xyz.coords(interleave(x1, x2), interleave(y1, y2), interleave(z1, z2))
+  x = -cos(data$Latitude/180*pi) * sin(data$Longitude/180*pi)
+  z = -cos(data$Latitude/180*pi) * cos(data$Longitude/180*pi)
+  y = sin(data$Latitude/180*pi)
+  height = data$Elevation/5 # exaggerate height by 200x
+  coordinates = xyz.coords(interleave(x*R, x*(R+height)),
+                           interleave(y*R, y*(R+height)),
+                           interleave(z*R, z*(R+height)))
   return(coordinates)
 }
 
@@ -30,11 +26,11 @@ makeColors = function(values) {
 
 #data = read.csv('../data/au.csv')
 data = read.csv('../GVP_Volcano_List.csv')
-#data = data[c(1:10),]
 
-points = latlong2cart(data)
+radius = 6371
+points = latlong2cart(data, radius)
 
 rgl.open()
 color = makeColors(data$Elevation)
 rgl.lines(points, color = interleave(color, color), lwd=2, line_antialias=TRUE)
-rgl.spheres(0,0,0,texture="../Earth.png")
+rgl.spheres(0, 0, 0, radius=radius, texture="../Earth.png", alpha=c(0.9), specular='#202020')
