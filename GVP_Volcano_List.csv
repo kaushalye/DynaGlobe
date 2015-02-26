@@ -1,4 +1,4 @@
-Volcano Number,Volcano Name,Country,Primary Volcano Type,Activity Evidence,Last Known Eruption,Region,Subregion,Latitude,Longitude,Elevation (m),Dominant Rock Type,Tectonic Setting
+Volcano Number,Volcano Name,Country,Primary Volcano Type,Activity Evidence,Last Known Eruption,Region,Subregion,Latitude,Longitude,Elevation,Dominant Rock Type,Tectonic Setting
 210010,West Eifel Volcanic Field,Germany,Maar(s),Eruption Dated,8300 BCE,Mediterranean and W Asia,Western Europe,50.17,6.85,600,Foidite,Rift zone / Continental crust (>25 km)
 210020,Chaine des Puys,France,Lava dome(s),Eruption Dated,4040 BCE,Mediterranean and W Asia,Western Europe,45.775,2.97,1464,Basalt / Picro-Basalt,Rift zone / Continental crust (>25 km)
 210030,Olot Volcanic Field,Spain,Pyroclastic cone(s),Undated Evidence,Unknown,Mediterranean and W Asia,Western Europe,42.17,2.53,893,Trachybasalt / Tephrite Basanite,Intraplate / Continental crust (>25 km)
